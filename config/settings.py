@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'rest_framework',
     # 'dry_yasg'
 
+    #apps
+    'post',
+
 
 
 ]
