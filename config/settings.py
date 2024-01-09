@@ -41,10 +41,12 @@ INSTALLED_APPS = [
 
     #libs
     'rest_framework',
+    'rest_framework.authtoken',
     # 'dry_yasg'
 
     #apps
     'post',
+    'account',
 
 
 
@@ -137,3 +139,20 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+AUTHENTICATION_CLASSES = [
+    'rest_framework.authentication.TokenAuthentication',
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
+
+# AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.EmailBackend']
+
+
+
+AUTH_USER_MODEL = 'account.CustomUser'
