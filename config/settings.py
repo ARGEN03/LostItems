@@ -46,6 +46,9 @@ INSTALLED_APPS = [
 
     #apps
     'post',
+    'account',
+    'Category',
+    'Comment'
 
 
 
