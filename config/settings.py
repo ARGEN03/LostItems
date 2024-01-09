@@ -46,7 +46,6 @@ INSTALLED_APPS = [
 
     #apps
     'post',
-    'account',
 
 
 
