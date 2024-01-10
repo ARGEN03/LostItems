@@ -4,7 +4,13 @@ from django.db import models
 
 
 class Category(models.Model):
-    title = models.CharField(max_length = 150)
+    CHOICE = (
+        ('Found','Нашел'),
+        ('Lost','Потерял')
+    )
+    
+
+    choice = models.CharField(max_length = 150, choices=CHOICE)
     parent = models.ForeignKey(
         'self',
         on_delete = models.SET_NULL,
