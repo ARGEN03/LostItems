@@ -9,8 +9,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     phone_number = models.CharField(max_length=150)
     telegram = models.CharField(max_length=150, null=True, blank=True)
     whatsapp = models.CharField(max_length=150, null=True, blank=True)
-    # password = models.CharField(max_length=150)
-    # password_confirmation = models.CharField(max_length=150)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
 
