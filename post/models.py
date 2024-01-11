@@ -6,7 +6,7 @@ from account.models import CustomUser
 class Post(models.Model):
     title = models.CharField(max_length=255, unique=True)
     desc = models.TextField()
-    category = models.ForeignKey(Category,on_delete=models.CASCADE, related_name='posts')
+    category = models.ForeignKey(Category,on_delete=models.CASCADE, related_name='posts', default='Found')
     image = models.ImageField(upload_to='images/', null=True)
     owner = models.ForeignKey(CustomUser,related_name='posts', on_delete=models.CASCADE)
     created_at = models.DateField(auto_now_add=True)

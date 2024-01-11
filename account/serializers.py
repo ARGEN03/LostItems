@@ -65,8 +65,12 @@ class LoginSerializer(serializers.Serializer):
         return email
     
 
+class UserDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = '__all__'
+        model = CustomUser
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         fields = '__all__'
-        model = User
-    # password = serializers.CharField(max_length=150, required=True)
+        model = CustomUser

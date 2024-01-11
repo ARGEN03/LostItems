@@ -158,3 +158,21 @@ REST_FRAMEWORK = {
 
 
 AUTH_USER_MODEL = 'account.CustomUser'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+
+
+
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+
+EMAIL_HOST_USER = 'bagishan040401@yandex.ru'
+EMAIL_HOST_PASSWORD = 'ekhntcrqthzfunvg'
+DEFAULT_FROM_EMAIL = 'bagishan040401@yandex.ru'
+
+
+# 'ekhntcrqthzfunvg'
