@@ -42,13 +42,14 @@ INSTALLED_APPS = [
     #libs
     'rest_framework',
     'rest_framework.authtoken',
-    # 'dry_yasg'
+    'drf_yasg',
 
     #apps
     'post',
     'account',
     'category',
-    'comment'
+    'comment',
+    'historysearch',
 
 
 
