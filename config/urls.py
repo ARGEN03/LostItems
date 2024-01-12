@@ -39,6 +39,7 @@ urlpatterns = [
     path('category/', include('category.urls')),    
     path('comment/', include('comment.urls')),
     path('history/', include('historysearch.urls')),
+    path('get_fav/', include('favorite.urls')),
     path('feedback/', include('feedback.urls')),
     path('swagger(?P<format>\.json|\.yaml)', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('swagger<str:format>', schema_view.without_ui(cache_timeout=0), name='schema-json'),
