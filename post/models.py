@@ -16,7 +16,7 @@ class Post(models.Model):
     description = models.TextField()
     status = models.CharField(max_length=20, choices=CHOICES)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='posts')
-    image = models.ImageField(upload_to='images/', null=True)
+    image = models.ImageField(upload_to='images/', null=True, blank=True)
     owner = models.ForeignKey(CustomUser,related_name='posts', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
