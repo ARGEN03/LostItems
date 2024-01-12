@@ -23,5 +23,6 @@ urlpatterns = [
     path('post/', include('post.urls')),
     path('category/', include('category.urls')),    
     path('comment/', include('comment.urls')),
-    path('history/', include('historysearch.urls'))
+    path('history/', include('historysearch.urls')),
+    path('get_fav/', include('favorite.urls')),
 ]
