@@ -11,11 +11,14 @@ from historysearch.models import SearchHistory
 from historysearch.serializers import SearchHistorySerializer
 from rest_framework import generics
 import logging
+from datetime import timedelta
+from django.utils import timezone
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.decorators import action
 
 
 logger = logging.getLogger('main')
+
 # Create your views here.
 class StandartResultPagination(PageNumberPagination):
     page_size = 5
@@ -87,3 +90,11 @@ class SearchHistoryView(generics.ListAPIView):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+        
+    @action(detail=False, methods=['GET'])
+    def posts_after_expiry(self, request):
+        expiry_time = timezone.now() - timedelta(minutes=8)
+        posts = Post.objects.filter(created_at__lte=expiry_time)
+        serializer = self.get_serializer(posts, many=True)
+        return Response(serializer.data)
+    
