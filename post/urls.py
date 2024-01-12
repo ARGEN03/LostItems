@@ -6,5 +6,6 @@ router = DefaultRouter()
 router.register('', PostViewSet, basename='post')
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('', include(router.urls)),
+    path('posts_after_expiry/', PostViewSet.posts_after_expiry, name='post-posts-after-expiry')
 ]
