@@ -11,5 +11,6 @@ app = Celery('config')
 # namespace='CELERY' означает, что все ключи конфигурации, связанные с Celery, должны иметь префикс 'CELERY_'.
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
+app.conf.BROKER_CONNECTION_TIMEOUT = 30
 # загрузите модули задач из всех зарегистрированных конфигураций приложений Django.
 app.autodiscover_tasks()
