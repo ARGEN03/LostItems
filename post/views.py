@@ -15,7 +15,7 @@ from rest_framework import generics
 import logging
 
 
-# logger = logging.getLogger('main')
+logger = logging.getLogger('main')
 # Create your views here.
 class StandartResultPagination(PageNumberPagination):
     page_size = 5
@@ -37,25 +37,25 @@ class PostViewSet(ModelViewSet):
     #     logger.error('Post List View Called')
     #     return super().list(request, *args, **kwargs)
 
-    # def create(self, request, *args, **kwargs):
-    #     logger.error('Post Create View Called')
-    #     return super().create(request, *args, **kwargs)
+    def create(self, request, *args, **kwargs):
+        logger.error('Post Create View Called')
+        return super().create(request, *args, **kwargs)
 
-    # def retrieve(self, request, *args, **kwargs):
-    #     logger.error('Post Retrieve View Called')
-    #     return super().retrieve(request, *args, **kwargs)
+    def retrieve(self, request, *args, **kwargs):
+        logger.error('Post Retrieve View Called')
+        return super().retrieve(request, *args, **kwargs)
 
-    # def update(self, request, *args, **kwargs):
-    #     logger.error('Post Update View Called')
-    #     return super().update(request, *args, **kwargs)
+    def update(self, request, *args, **kwargs):
+        logger.error('Post Update View Called')
+        return super().update(request, *args, **kwargs)
 
-    # def partial_update(self, request, *args, **kwargs):
-    #     logger.error('Post Partial Update View Called')
-    #     return super().partial_update(request, *args, **kwargs)
+    def partial_update(self, request, *args, **kwargs):
+        logger.error('Post Partial Update View Called')
+        return super().partial_update(request, *args, **kwargs)
 
-    # def destroy(self, request, *args, **kwargs):
-    #     logger.error('Post Destroy View Called')
-    #     return super().destroy(request, *args, **kwargs)
+    def destroy(self, request, *args, **kwargs):
+        logger.error('Post Destroy View Called')
+        return super().destroy(request, *args, **kwargs)
      
     @swagger_auto_schema(method='POST', request_body=CommentSerializer, operation_description='add comment for post')
     @action(detail=True, methods=['POST'])
