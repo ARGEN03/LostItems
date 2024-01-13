@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    
     #libs
     'rest_framework',
     'rest_framework.authtoken',
@@ -67,7 +67,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-import logging
+# import logging
+
+
 
 # settings.py
 LOGGING = {
@@ -116,6 +118,8 @@ TEMPLATES = [
         },
     },
 ]
+
+TELEGRAM_BOT_TOKEN = '6971690130:AAEnaXlgCXTI89xbJGwnzscN6sQwuqG4hNM'
 
 WSGI_APPLICATION = 'config.wsgi.application'
 

@@ -5,5 +5,9 @@ python-decouple
 Pillow
 django-filter
 drf-yasg
+pytelegrambotapi
+requests
+telebot
 celery
 rabbitm
+

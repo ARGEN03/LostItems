@@ -45,8 +45,5 @@ urlpatterns = [
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 
-]
 
-# теперь логирование будет работать в отладке, если хотите убрать его, надо:
-# 1. зайти settings.py
-# 2. найти LOGGING
+]
