@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     'category',
     'comment',
     'historysearch',
-
+    'favorite',
+    'feedback',
 
 
 ]
@@ -65,6 +66,38 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+import logging
+
+# settings.py
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': '{asctime} {levelname} {module} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+        'file': {
+            'class': 'logging.FileHandler',
+            'formatter': 'simple',
+            'filename': 'information.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
+}
 
 ROOT_URLCONF = 'config.urls'
 
@@ -189,11 +222,21 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
 
 
-
-
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
         "LOCATION": os.path.join(BASE_DIR, 'lost_items_cache'),
     }
+}
+
+
+SWAGGER_SETTINGS = {
+    'DEFAULT_INFO': 'your_project.urls.swagger_info',
+    'SECURITY_DEFINITIONS': {
+        'api_key': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        },
+    },
 }

@@ -1,4 +1,5 @@
 from comment.serializers import CommentSerializer
+# from feedback.serializers import FeedbackSerializer
 from .models import Post
 from rest_framework import serializers
 from category.models import Category
@@ -11,6 +12,7 @@ class PostSerializer(serializers.ModelSerializer):
         required=True, queryset=Category.objects.all()
     )
     comments = serializers.SerializerMethodField(method_name='get_comments')
+    # recovery_feedbacks =FeedbackSerializer(many=True, read_only=True)
 
     def get_comments(self, instance):
         comments = instance.comments.all()
