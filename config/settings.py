@@ -50,8 +50,8 @@ INSTALLED_APPS = [
     'category',
     'comment',
     'historysearch',
+    'favorite',
     'feedback',
-
 
 
 ]
