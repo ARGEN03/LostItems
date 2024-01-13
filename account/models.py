@@ -10,7 +10,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     telegram = models.CharField(max_length=150, null=True, blank=True)
     whatsapp = models.CharField(max_length=150, null=True, blank=True)
     is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
 
 
     USERNAME_FIELD = 'email'
@@ -21,4 +21,5 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+    
 
