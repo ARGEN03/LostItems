@@ -6,3 +6,6 @@ Pillow
 django-filter
 drf-yasg
 celery[rabbitmq]
+pytelegrambotapi
+requests
+telebot
