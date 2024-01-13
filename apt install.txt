@@ -1,0 +1,7 @@
+sudo apt-get install rebbitmq-server
+sudo systemctl start rebbitmq-server
+sudo systemctl enable rebbitmq-server
+
+
+# эта команда для запуска celery
+celery -A config worker -l info

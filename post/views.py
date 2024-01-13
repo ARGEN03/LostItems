@@ -17,7 +17,6 @@ from drf_yasg.utils import swagger_auto_schema
 from rest_framework.decorators import action
 
 
-# logger = logging.getLogger('main')
 
 # Create your views here.
 class StandartResultPagination(PageNumberPagination):
@@ -35,30 +34,6 @@ class PostViewSet(ModelViewSet):
     ordering_fields = ['status', 'created_at', 'title']
     pagination_class = StandartResultPagination
 
-    # def list(self, request, *args, **kwargs):
-    #     print('DEBUG: Post List View Called')
-    #     logger.error('Post List View Called')
-    #     return super().list(request, *args, **kwargs)
-
-    # def create(self, request, *args, **kwargs):
-    #     logger.error('Post Create View Called')
-    #     return super().create(request, *args, **kwargs)
-
-    # def retrieve(self, request, *args, **kwargs):
-    #     logger.error('Post Retrieve View Called')
-    #     return super().retrieve(request, *args, **kwargs)
-
-    # def update(self, request, *args, **kwargs):
-    #     logger.error('Post Update View Called')
-    #     return super().update(request, *args, **kwargs)
-
-    # def partial_update(self, request, *args, **kwargs):
-    #     logger.error('Post Partial Update View Called')
-    #     return super().partial_update(request, *args, **kwargs)
-
-    # def destroy(self, request, *args, **kwargs):
-    #     logger.error('Post Destroy View Called')
-    #     return super().destroy(request, *args, **kwargs)
      
     @swagger_auto_schema(method='POST', request_body=CommentSerializer, operation_description='add comment for post')
     @action(detail=True, methods=['POST'])
