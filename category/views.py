@@ -25,7 +25,7 @@ class CategoryViewSet(ModelViewSet):
 
     def get_permissions(self):
         if self.request.method in ['PATCH', 'PUT', 'DELETE','POST']:
-            return [permissions.IsStaff()]
+            return [IsStaff()]
         return [permissions.AllowAny()]
     
     def list(self, request, *args, **kwargs):
