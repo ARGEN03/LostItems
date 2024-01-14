@@ -20,7 +20,7 @@ from rest_framework.decorators import action
 
 # Create your views here.
 class StandartResultPagination(PageNumberPagination):
-    page_size = 5
+    page_size = 50
     page_query_param= 'page'
 
 

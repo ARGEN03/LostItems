@@ -11,8 +11,8 @@ class Lostitems:
         data = requests.get(url + '/post/' + '?status=Lost').json()
         return data
     
-# class Found_items:
-#     def get_found_items(self, url):
-#         data = requests.get(url + '/post/' + '?status=Found').json()
-#         return data
+class Founditems:
+    def get_found_items(self, url):
+        data = requests.get(url + '/post/' + '?status=Found').json()
+        return data
 
