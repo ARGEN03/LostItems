@@ -2,20 +2,17 @@ import requests
 
 # BOT_API = 
 class Products:
-    def get_all_post(self ,url):
-        data = requests.get(url+'/post/').json()
+    def get_all_post(self, url):
+        data = requests.get(url + '/post/').json()
         return data
 
+class Lostitems:
+    def get_lost_items(self, url):
+        data = requests.get(url + '/post/' + '?status=Lost').json()
+        return data
     
-class Login:
-    def login(self, url , email , password):
-        data = {
-            'email': email,
-            'password': password
-        }
+class Founditems:
+    def get_found_items(self, url):
+        data = requests.get(url + '/post/' + '?status=Found').json()
+        return data
 
-        response = requests.post(url+'/account/login/', data=data)
-        if response.status_code == 200:
-            return response.json().get('access')
-        else:
-            return 'Неверный логин или пароль'

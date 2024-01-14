@@ -20,7 +20,7 @@ from rest_framework.decorators import action
 
 # Create your views here.
 class StandartResultPagination(PageNumberPagination):
-    page_size = 5
+    page_size = 50
     page_query_param= 'page'
 
 
@@ -60,7 +60,7 @@ class PostViewSet(ModelViewSet):
         return Response(serializer.data)
     
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+        serializer.save(owner=self.request.user, title=serializer.validated_data['title'])
         
 class SearchHistoryView(generics.ListAPIView):
     queryset = SearchHistory.objects.all()

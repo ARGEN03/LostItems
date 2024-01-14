@@ -14,13 +14,21 @@ class PostSerializer(serializers.ModelSerializer):
     comments = serializers.SerializerMethodField(method_name='get_comments')
     # recovery_feedbacks =FeedbackSerializer(many=True, read_only=True)
 
+    def create(self, validated_data):
+        title = validated_data.get('title')
+        existing_post = Post.objects.filter(title=title).first()
+
+        if existing_post:
+            return existing_post
+
+        return Post.objects.create(**validated_data)
+
     def get_comments(self, instance):
         comments = instance.comments.all()
         serializer = CommentSerializer(
             comments, many=True
         )
         return serializer.data
-
 
     class Meta:
         model = Post
