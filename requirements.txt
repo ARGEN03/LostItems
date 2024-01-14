@@ -9,5 +9,5 @@ pytelegrambotapi
 requests
 telebot
 celery
-rabbitm
+rabbitmq
 

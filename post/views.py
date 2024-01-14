@@ -60,7 +60,7 @@ class PostViewSet(ModelViewSet):
         return Response(serializer.data)
     
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+        serializer.save(owner=self.request.user, title=serializer.validated_data['title'])
         
 class SearchHistoryView(generics.ListAPIView):
     queryset = SearchHistory.objects.all()

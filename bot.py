@@ -1,4 +1,5 @@
-from parser_log import Products, Login
+from telebot import types
+from parser_log import Products, Lostitems
 from decouple import config
 import telebot
 
@@ -6,39 +7,57 @@ BOT_API = telebot.TeleBot((config('BOT_TOKEN')))
 URL = config('URL')
 
 product = Products()
-login_manager = Login() 
+lost_items = Lostitems()
 is_user_login_in = False
 
 def LostItem_bot(bot):
+
     @bot.message_handler(commands=['start'])
     def start(message):
-        bot.send_message(message.chat.id, f'Приветствую, {message.from_user.first_name}! \n Для начала работы введите логин и пароль:')
+        bot.send_message(message.chat.id, f'Приветствую, {message.from_user.first_name}!')
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        item_all_post = types.KeyboardButton("Получить все посты")
+        item_lost_items = types.KeyboardButton("Получить всe потеряшки")
+        markup.add(item_all_post, item_lost_items)
+        bot.send_message(message.chat.id, "Для получения всех постов нажмите кнопку:", reply_markup=markup)
+        bot.send_message(message.chat.id, "Для получения всех потерянных вещей нажмите кнопку:", reply_markup=markup)
 
-    @bot.message_handler(content_types='text')
-    def process_login(message):
-        global is_user_login_in
-        if is_user_login_in == False:
-            req = login_manager.login(URL, message.text.split()[0], message.text.split()[1])
-            if req == 'Неверный логин или пароль':
-                bot.send_message(message.chat.id, 'Неверный логин или пароль')
-            else:
-                bot.send_message(message.chat.id, 'Вы вошли в аккаунт')
-                is_user_login_in = True
-        
-    @bot.message_handler(commands=['get_all_posts'])
+    @bot.message_handler(func=lambda message: message.text == 'Получить все посты')
     def get_all_posts(message):
-        global is_user_login_in
-        if is_user_login_in:
-            posts = product.get_all_post(URL)
-            print(posts)
-            bot.send_message(message.chat.id, f'Все посты:\n{posts}')
-            
-        else:
-            bot.send_message(message.chat.id, 'Вы не вошли в аккаунт. Введите логин и пароль с помощью команды /start.')
+        posts = product.get_all_post(URL)
+        for post in posts['results']:
+            title = post["title"]
+            desc = post['description']
+            image = post['image']
+            status = post['status']
+            bot.send_message(message.chat.id, f'Заголовок: {title}\nОписание: {desc}\nИзображение: {image}\nСтатус: {status}')
 
-    bot.polling()
+    @bot.message_handler(func=lambda message: message.text == 'Получить всe потеряшки')
+    def get_all_lost_items(message):
+        l_items = lost_items.get_lost_items(URL)
+        for item in l_items['results']:
+            title = item["title"]
+            desc = item['description']
+            image = item['image']
+            status = item['status']
+            bot.send_message(message.chat.id, f'Заголовок: {title}\nОписание: {desc}\nИзображение: {image}\nСтатус: {status}')
+
+    # print(type(lost_items.get_lost_items(URL)))
+    # Запуск бота
+    bot.polling(none_stop=True)
 
 LostItem_bot(BOT_API)
+# posts = product.get_all_post(URL)
+# for post in posts['results']:
+#     if post['image'] is not None:
+#         print(post['image'][29:])
+#     else:
+#         print(None)
 
-# print(product.get_all_post(URL))
-# print(login.login(URL, 'bilal@gmail.com', '12345'))
+# posts = product.get_all_post(URL)
+# for post in posts['results']:
+     
+#     print(post['title'])
+
+#
+        
