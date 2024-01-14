@@ -6,6 +6,7 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework import status
 from rest_framework import generics
 from rest_framework import permissions
+from .tasks import send_confirmation_email_task
 
 from .serializers import RegisterSerializer, LoginSerializer, UserDetailSerializer
 from .serializers import UserSerializer
@@ -16,8 +17,11 @@ class UserRegistration(APIView):
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response('Account is created', status=200)
+        user = serializer.save()
+    
+        send_confirmation_email_task.delay(user.id)
+
+        return Response('Account is created. Confirmation email will be sent.', status=status.HTTP_201_CREATED)
     
 
 class UserDetail(APIView):
